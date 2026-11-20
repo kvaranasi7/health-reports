@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>dx fabric — Ritual V3 catalog health, 20 Nov 2026</title>
+  <style>
+    :root {
+      --ink: #1f2937;
+      --muted: #6b7280;
+      --line: #111827;
+      --panel: #f9fafb;
+      --accent: #5b5bf0;
+      --danger-bg: #fff7ed;
+      --danger-line: #fb923c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: #fff;
+      line-height: 1.55;
+    }
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+    }
+    .eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--accent);
+      border-radius: 4px;
+      padding: 4px 8px;
+      margin-bottom: 14px;
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: 36px;
+      line-height: 1.1;
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: 15px;
+      margin: 0 0 26px;
+    }
+    h2 {
+      margin: 34px 0 10px;
+      font-size: 24px;
+      border-bottom: 2px solid var(--line);
+      padding-bottom: 6px;
+    }
+    h3 {
+      margin: 22px 0 8px;
+      font-size: 18px;
+    }
+    .callout {
+      border-left: 6px solid var(--danger-line);
+      background: var(--danger-bg);
+      padding: 14px 16px;
+      border-radius: 6px;
+      margin: 22px 0;
+    }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 16px 0 10px;
+    }
+    .metric {
+      border: 1px solid #e5e7eb;
+      background: var(--panel);
+      border-radius: 8px;
+      padding: 10px 12px;
+    }
+    .metric .v {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.15;
+    }
+    .metric .k {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    ul { padding-left: 20px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+    th, td {
+      border: 1px solid #d1d5db;
+      padding: 8px 10px;
+      vertical-align: top;
+    }
+    th {
+      background: #111827;
+      color: #fff;
+      text-align: left;
+    }
+    td:first-child {
+      font-weight: 700;
+      background: #f3f4f6;
+    }
+    td.n { text-align: right; font-variant-numeric: tabular-nums; }
+    a { color: var(--accent); }
+    .footer {
+      margin-top: 28px;
+      font-size: 12px;
+      color: var(--muted);
+      border-top: 1px solid #e5e7eb;
+      padding-top: 12px;
+    }
+    @media (max-width: 760px) {
+      .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      h1 { font-size: 30px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="eyebrow">dx fabric</div>
+    <h1>Ritual V3 catalog health</h1>
+    <p class="subtitle">Published scorecards and catalog records evaluated 20 Nov 2026, 12:58 PM ET. Draft checks are excluded. Source: DX catalog, scorecard definitions, and per-entity check results for the Ritual V3 account.</p>
+
+    <section class="callout">
+      <strong>Two programs are overdue, and two checks block entire ladders.</strong>
+      <p>OpenTelemetry migration is 112 days past due at 5.1% complete (8 of 158 checks), and the OpenTelemetry check itself passes on 5 of 79 services. Critical CVE remediation is 14 days past due, with 18 entities still outside the critical SLA (12 services and 6 repositories). Documentation has no service on Bronze, because the Mac and Windows README command checks fail all 79 services and return no message. Entity ownership stops at Bronze: 81 entities have an owner, and the Slack-team check fails all 459 in-scope entities.</p>
+    </section>
+
+    <h2>1. Executive summary</h2>
+    <p>Ritual V3 has a wide, recently evaluated catalog and a scorecard program that runs every two hours. The evaluation pipeline is healthy. The operating picture is a set of closed ladders, a large unowned API surface, and two initiatives that are already past due.</p>
+    <div class="metrics">
+      <div class="metric"><div class="v">691</div><div class="k">Catalog entities</div></div>
+      <div class="metric"><div class="v">48.8%</div><div class="k">Checks passing</div></div>
+      <div class="metric"><div class="v">66.6%</div><div class="k">Entities with no owner</div></div>
+      <div class="metric"><div class="v">0</div><div class="k">Services fully green</div></div>
+    </div>
+    <p>11,198 published check results across 677 scored entities: 5,466 pass, 394 warn, 5,338 fail. Strict pass rate is 48.8%. Soft pass is 52.3%, because every warn arrived with <span>passed = true</span>. Every published result executed within the last 2.2 hours (median 1.0 hour), inside the 2-hour evaluation frequency. Exemptions in force: 0. The 14 unscored entities are the 13 product areas and the single feature record. The Agent type exists and has no entities.</p>
+    <p>Failures are spread across many checks, with a few gates doing outsized damage. The five largest failing checks account for 1,308 of 5,338 failures (24.5%). The single largest is “Slack Team is defined” at 459 failures. API endpoints contribute 746 failures, all of them on the ownership scorecard, from a population that has no owner on any of 373 records.</p>
+
+    <h2>2. Health KPIs and coverage</h2>
+    <p>The catalog is integration-fed and recently evaluated. Coverage of scorecards is wide. Completeness of ownership and descriptions is uneven. 518 of 691 entities were created via API. Services were all touched in the last 30 days. Team records and repository descriptions were not.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Population</th>
+          <th>Entities</th>
+          <th>Check pass rate</th>
+          <th>Owned by a team</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Services</td><td class="n">79</td><td>57.1% (4,417 / 7,733)</td><td class="n">75</td></tr>
+        <tr><td>Repositories</td><td class="n">163</td><td>22.7% (409 / 1,803)</td><td class="n">82</td></tr>
+        <tr><td>Teams</td><td class="n">55</td><td>70.3% (634 / 902)</td><td class="n">55</td></tr>
+        <tr><td>API endpoints</td><td class="n">373</td><td>0% (0 / 746)</td><td class="n">0</td></tr>
+        <tr><td>Resources</td><td class="n">7</td><td>42.9% (6 / 14)</td><td class="n">6</td></tr>
+        <tr><td>Product areas</td><td class="n">13</td><td>Not scored</td><td class="n">13</td></tr>
+        <tr><td>Feature</td><td class="n">1</td><td>Not scored</td><td class="n">0</td></tr>
+      </tbody>
+    </table>
+    <p>677 of 691 entities sit on at least one scorecard. A service sits on 11 scorecards on average, and 13 at the most. No property on any entity type is required. Relation definitions exist (7), and relation instances are not returned by the API. The user directory is not authorized for this credential, so ownership below is team ownership on the entity record.</p>
+
+    <h3>Entity detail</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Entity type</th>
+          <th>Records</th>
+          <th>Owned</th>
+          <th>Description blank</th>
+          <th>On a scorecard</th>
+          <th>Stale signal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>API endpoint</td><td class="n">373</td><td class="n">0</td><td class="n">0</td><td class="n">373</td><td>355 last updated 90–180 days ago</td></tr>
+        <tr><td>Repository</td><td class="n">163</td><td class="n">82</td><td class="n">163</td><td class="n">163</td><td>81 last updated 180–365 days ago</td></tr>
+        <tr><td>Service</td><td class="n">79</td><td class="n">75</td><td class="n">3</td><td class="n">79</td><td>All updated in the last 30 days</td></tr>
+        <tr><td>Team</td><td class="n">55</td><td class="n">55</td><td class="n">55</td><td class="n">55</td><td>51 last updated more than a year ago</td></tr>
+        <tr><td>Product area</td><td class="n">13</td><td class="n">13</td><td class="n">0</td><td class="n">0</td><td>10 last updated 90–180 days ago</td></tr>
+        <tr><td>Resource</td><td class="n">7</td><td class="n">6</td><td class="n">1</td><td class="n">7</td><td>5 last updated 90–180 days ago</td></tr>
+        <tr><td>Feature</td><td class="n">1</td><td class="n">0</td><td class="n">1</td><td class="n">0</td><td>Created in the last 30 days</td></tr>
+        <tr><td>Agent</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td>Type is empty</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Ownership and metadata</h3>
+    <ul>
+      <li>231 entities have a team owner (33.4%). 460 have none (66.6%). No entity has a user owner.</li>
+      <li>75 of 79 services have exactly one owner team, across 53 teams. Owned services pass 59.0% of their checks. The four unowned services pass 15.8%.</li>
+      <li>Those four unowned services are also the only services missing tier, lifecycle, data classification, language, technical owner, and a linked repository: Ruby2Shell PoC Test 2026-11-20 (created 20 Nov), DPSE Triaging (12 Nov), CRA Foundations - High Urgency and CRA Foundations - Low Urgency (9 Oct). Three of the four have a blank description.</li>
+      <li>A resource named ruby2shell was created 20 Nov with no owner and no description. The other six resources (Postgres, Elasticsearch, S3, BigQuery, Kafka, Redis) have an owner and a description.</li>
+      <li>All 373 API endpoints are unowned. They account for 373 of the 378 owner-check failures. The other five failures are the four services and ruby2shell. The initiative “All services need owner teams” is 81 of 459 checks passed (17.6%) and is due 31 Dec 2026.</li>
+      <li>PagerDuty is linked on 76 of 79 services. A repository alias is linked on 75 of 79. The DX incident alias is linked on 1 of 79. The Slack channel property is set on 7 services, and the Slack scorecard check still fails those 7, with an empty message, along with every other in-scope entity.</li>
+      <li>Every repository description is blank. The team organization property is blank on all 55 team entities. Domain is set on 1 entity (Billing).</li>
+      <li>The org chart has 77 teams and the catalog has 55 team entities. Five org teams have zero contributors. All 77 org teams have an empty external reference id. One org node, All Teams, has no manager, which matches a root node.</li>
+      <li>A boolean test property is set on all 163 repositories. The feature record “cool feature” is unowned, undescribed, and unscored.</li>
+    </ul>
+
+    <h2>3. Scorecarding effectiveness</h2>
+    <p>All 17 scorecards are published. Thirteen are level ladders and four are points. Each evaluates every 2 hours, has exemptions enabled, has two admins, and has zero editors. There are no SQL errors on scorecard definitions. Two draft checks are excluded from the rates below: “Slack channel set” on Catalog Health, and “All env vars are documented” on Documentation. Draft rows were not present in entity results.</p>
+    <section class="callout">
+      <strong>Level attained is the operating number.</strong>
+      <p>Strict outcome below is FAIL when any published check fails. On DORA, mean time to recover is medium or better for all 79 services, and high or better for all 79, while open-to-deploy is medium or better for 8. A ladder that repeats one metric at several rungs will look universally failed if you only count red checks. Warnings count as a soft pass in the 52.3% figure and still keep an entity out of the strict pass column.</p>
+    </section>
+    <table>
+      <thead>
+        <tr>
+          <th>Scorecard</th>
+          <th>In scope</th>
+          <th>Pass</th>
+          <th>Warn</th>
+          <th>Fail</th>
+          <th>What the result is saying</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Entity ownership</td><td class="n">459</td><td class="n">0</td><td class="n">0</td><td class="n">459</td><td>81 have an owner and sit at Bronze. Slack fails everyone, so nobody is strict-green. Gold has no checks.</td></tr>
+        <tr><td>Documentation</td><td class="n">79</td><td class="n">0</td><td class="n">0</td><td class="n">79</td><td>Blocked below Bronze by two README command checks. README exists passes 21 of 79. Gold has no checks.</td></tr>
+        <tr><td>Reliability</td><td class="n">79</td><td class="n">0</td><td class="n">0</td><td class="n">79</td><td>74 services are below Bronze. OpenTelemetry passes 5. New Relic removal passes 3, which matches the 3 services at Silver.</td></tr>
+        <tr><td>DORA by service</td><td class="n">79</td><td class="n">0</td><td class="n">0</td><td class="n">79</td><td>65 sit at Low, 3 at Medium, 11 have no DORA data. Deploy time is the constraint. MTTR already clears High for every service.</td></tr>
+        <tr><td>Security maturity</td><td class="n">79</td><td class="n">0</td><td class="n">0</td><td class="n">79</td><td>The audit check fails 79 of 79. Average is 1.5 of 5 checks passing. The points scorecard stays red.</td></tr>
+        <tr><td>AI Center of Excellence</td><td class="n">79</td><td class="n">25</td><td class="n">5</td><td class="n">49</td><td>Healthiest ladder. 51 services are AI-adopted or better. The 5 warns sit on entities that have reached the top.</td></tr>
+        <tr><td>AI Readiness</td><td class="n">79</td><td class="n">11</td><td class="n">6</td><td class="n">62</td><td>17 reach Gold. Warnings are concentrated on skill files (57) and MCP configuration (52).</td></tr>
+        <tr><td>Quality</td><td class="n">79</td><td class="n">9</td><td class="n">0</td><td class="n">70</td><td>Bronze has no checks. 67 rest on the empty level. 3 are Silver and 9 are Gold.</td></tr>
+        <tr><td>Jira hygiene</td><td class="n">79</td><td class="n">27</td><td class="n">0</td><td class="n">52</td><td>Average 9.6 of 14 checks pass. 27 services pass every check. 13 of 14 checks have no description.</td></tr>
+        <tr><td>Operational readiness</td><td class="n">70</td><td class="n">7</td><td class="n">4</td><td class="n">59</td><td>Owner, runbook, and tier pass 70 of 70. Nine services are outside this scorecard, including the four with no owner.</td></tr>
+        <tr><td>AI daemon installs</td><td class="n">52</td><td class="n">4</td><td class="n">5</td><td class="n">43</td><td>Team scorecard. 44 of 52 pass install coverage. 16 reach 90% or the top metric level. Three teams are outside the filter.</td></tr>
+        <tr><td>Meetings</td><td class="n">55</td><td class="n">9</td><td class="n">0</td><td class="n">46</td><td>11 teams average more than 40 meeting hours per person and sit below Bronze. 9 reach Gold.</td></tr>
+        <tr><td>AI cost</td><td class="n">55</td><td class="n">0</td><td class="n">27</td><td class="n">28</td><td>Total AI cost never fails (52 warn, 3 pass). The heavy-user check fails 28.</td></tr>
+        <tr><td>Code vulnerabilities</td><td class="n">159</td><td class="n">66</td><td class="n">0</td><td class="n">93</td><td>75 services and 84 GitHub-linked repositories. 66 are Secure. 18 fail the critical SLA. 79 Bitbucket repositories are outside this scorecard.</td></tr>
+        <tr><td>Catalog health</td><td class="n">20</td><td class="n">0</td><td class="n">0</td><td class="n">20</td><td>Narrow service filter. 15 are Well Configured, 2 are Well maintained, nobody reaches Reliable.</td></tr>
+        <tr><td>Repo AI fabric</td><td class="n">163</td><td class="n">0</td><td class="n">0</td><td class="n">163</td><td>138 have no signal. 25 reach Adoption. Both 90-day session checks fail 163 of 163, so the levels above Adoption are closed.</td></tr>
+        <tr><td>Package versions</td><td class="n">2</td><td class="n">0</td><td class="n">0</td><td class="n">2</td><td>Accounts and Offers only. Each fails one of the two checks.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Level attained</h3>
+    <table>
+      <thead>
+        <tr><th>Ladder</th><th>Below first</th><th>First</th><th>Second</th><th>Third</th><th>Top</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>AI Center of Excellence (79)</td><td class="n">4</td><td>23 Governed</td><td>1 AI-ready</td><td>21 AI-adopted</td><td>30 Impact without harm</td></tr>
+        <tr><td>AI Readiness (79)</td><td class="n">33</td><td>15 Bronze</td><td>14 Silver</td><td>17 Gold</td><td></td></tr>
+        <tr><td>Operational readiness (70)</td><td class="n">5</td><td>46 Bronze</td><td>8 Silver</td><td>11 Gold</td><td></td></tr>
+        <tr><td>DORA (79)</td><td class="n">11</td><td>65 Low</td><td>3 Medium</td><td>0 High</td><td>0 Elite</td></tr>
+        <tr><td>Reliability (79)</td><td class="n">74</td><td>2 Bronze</td><td>3 Silver</td><td>0 Gold</td><td></td></tr>
+        <tr><td>Documentation (79)</td><td class="n">79</td><td>0 Bronze</td><td>0 Silver</td><td>0 Gold</td><td></td></tr>
+        <tr><td>Code vulnerabilities (159)</td><td class="n">18</td><td>49 Exposed</td><td>26 Vulnerable</td><td>66 Secure</td><td></td></tr>
+        <tr><td>Entity ownership (459)</td><td class="n">378</td><td>81 Bronze</td><td>0 Silver</td><td>0 Gold</td><td></td></tr>
+        <tr><td>Repo AI fabric (163)</td><td class="n">138</td><td>25 Adoption</td><td>0 Productivity</td><td>0 Risk</td><td></td></tr>
+        <tr><td>Meetings (55 teams)</td><td class="n">11</td><td>12 Bronze</td><td>23 Silver</td><td>9 Gold</td><td></td></tr>
+        <tr><td>Quality (79)</td><td class="n">67</td><td>0 Bronze</td><td>3 Silver</td><td>9 Gold</td><td></td></tr>
+        <tr><td>Catalog health (20)</td><td class="n">3</td><td>15 Well configured</td><td>2 Well maintained</td><td>0 Reliable</td><td></td></tr>
+        <tr><td>Daemon installs (52 teams)</td><td class="n">8</td><td>0 at 25%</td><td>28 at 50%</td><td>7 at 90%</td><td>9 at the top metric</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Check quality</h3>
+    <ul>
+      <li>24 of 132 published checks have no description. 13 of those are Jira hygiene checks. The meetings scorecard and the AI cost scorecard have no descriptions on any check, and both scorecards have a blank description of their own.</li>
+      <li>132 of 134 checks have no effort estimate. The two that do are OpenTelemetry (2.5 days) and New Relic removal (1.0 day). Initiative remaining dev-days is 0 except OpenTelemetry (261).</li>
+      <li>3 checks have a remediation link, and all three are placeholders: a test host on “Owner is defined,” example.com on unit-test coverage, and a YouTube video on the OpenTelemetry check.</li>
+      <li>82 checks have output enabled. 0 scorecards have SQL errors. Exemptions are enabled on all 17 scorecards and applied on none.</li>
+      <li>Checks that fail for nearly everyone and return no message: Slack team defined (459/459), both README operating-system command checks (79/79 each), security audit within six months (79/79), OpenTelemetry instrumented (74/79), New Relic client removed (76/79), and the three Reliability gold SLOs (75 to 76 of 79).</li>
+      <li>The Mac and Windows file-matching properties are populated on 1 of 79 services, and both README command checks still fail all 79. The check is not explaining the gap to the owner.</li>
+      <li>Two check names are defined twice: “Web deployment has health checks” (Catalog Health at Reliable, Reliability at Bronze) and “Incident MTTR &lt; 1 hour” (Catalog Health at Reliable, Reliability at Gold). Catalog Health is a 20-service slice of the same ideas.</li>
+      <li>Empty rungs: Quality Bronze, Documentation Gold, and Entity ownership Gold have no checks. Package Versions covers 2 services. The Agent type has no entities.</li>
+    </ul>
+
+    <h2>4. Top risks and bottlenecks</h2>
+    <table>
+      <thead>
+        <tr><th>Risk</th><th>Scale</th><th>Why it is stuck</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>OpenTelemetry not in place</td><td>74 of 79 services</td><td>Blocks Reliability Bronze for everyone who fails it. The initiative is 5.1% complete (8 of 158), due 31 Jul 2026, 112 days overdue, 261 dev-days left. Owner: Christian Haaland. The 8 passing initiative checks are the 5 instrumented services plus the 3 that have removed the New Relic client. The check returns no message, and its remediation link is a video.</td></tr>
+        <tr><td>Critical vulnerabilities outside SLA</td><td>18 of 159 scored entities</td><td>12 services and 6 GitHub-linked repositories. Initiative is 88.7% complete (141 of 159), due 6 Nov 2026, 14 days overdue. Owner: Christian Haaland. High alerts fail on 60 (29 services, 31 repositories). Medium alerts fail on 84. Low alerts pass on all 159. The 79 Bitbucket repositories are outside this scorecard and unowned. The four unowned services are also outside it.</td></tr>
+        <tr><td>API endpoints have no owner</td><td>373 of 373</td><td>This is 373 of 378 owner-check failures, and all 746 API check results. Due 31 Dec 2026, 41 days left. Owner: Ryan Jones. Records are created by API with a description and no team. 355 were last updated 90–180 days ago.</td></tr>
+        <tr><td>Documentation ladder is closed</td><td>79 of 79 below Bronze</td><td>README Mac-command and Windows-command checks fail everyone, have blank descriptions, and return no message. README existence itself passes 21 of 79, so the ladder is blocked by the two command checks.</td></tr>
+        <tr><td>Deploy time holds DORA at Low</td><td>65 of 79 at Low</td><td>3 services are Medium. 0 are High or Elite. 11 have no DORA data. MTTR clears Medium and High for every service, and Elite for 75. Open-to-deploy clears Medium for 8 and High for 6. Deploy frequency already clears Medium for 55.</td></tr>
+        <tr><td>Security audit check is dark</td><td>79 of 79 fail</td><td>No message. It keeps every service from passing the points scorecard. Average is 1.5 of 5 checks (SECURITY.md 16, SonarCloud 40, SAST in CI 20, no unresolved incidents 45, audit 0). Initiative is 32.1% (76 of 237), due 30 Apr 2027. Owner: Tyler Wray.</td></tr>
+        <tr><td>Four scratch services and one resource</td><td>4 services, 15.8% pass</td><td>These four are the entire service ownership gap. They sit outside Operational Readiness and Code Vulnerabilities. Five additional owned services (Experimentation, Recommendations, Feature Flags, Tokens, AI) are also outside Operational Readiness.</td></tr>
+        <tr><td>Repository AI session checks</td><td>163 of 163 fail</td><td>Session-to-code conversion and session directory coverage both fail every repository, so Productivity and Risk are closed. 138 repositories have no signal at all. 25 reach Adoption.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Initiatives</h3>
+    <table>
+      <thead>
+        <tr><th>Initiative</th><th>Due</th><th>Complete</th><th>Checks</th><th>Owner</th><th>State</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Migration to OpenTelemetry</td><td>31 Jul 2026</td><td>5.1%</td><td>8 / 158</td><td>Christian Haaland</td><td>112 days overdue</td></tr>
+        <tr><td>Critical CVEs within 24 hours</td><td>6 Nov 2026</td><td>88.7%</td><td>141 / 159</td><td>Christian Haaland</td><td>14 days overdue</td></tr>
+        <tr><td>All services need owner teams</td><td>31 Dec 2026</td><td>17.6%</td><td>81 / 459</td><td>Ryan Jones</td><td>41 days left</td></tr>
+        <tr><td>Improve security profile</td><td>30 Apr 2027</td><td>32.1%</td><td>76 / 237</td><td>Tyler Wray</td><td>161 days left</td></tr>
+        <tr><td>AI Center of Excellence, wave 1</td><td>17 Feb 2027</td><td>81.9%</td><td>194 / 237</td><td>Ryan Jones</td><td>89 days left</td></tr>
+      </tbody>
+    </table>
+    <p>Wave 1 is the only initiative ahead of its calendar. Both priority-0 initiatives are overdue. Remaining dev-days are tracked only on OpenTelemetry.</p>
+
+    <h2>5. Prioritized roadmap</h2>
+    <h3>Quick wins</h3>
+    <table>
+      <thead><tr><th>Action</th><th>Done when</th></tr></thead>
+      <tbody>
+        <tr><td>Repair or unpublish the two README OS-command checks</td><td>At least one service can reach Documentation Bronze, or the checks are unpublished until they return a message and read the file property.</td></tr>
+        <tr><td>Unpublish “Slack Team is defined,” or point it at the Slack channel property</td><td>Entity ownership Silver is reachable for the 81 entities that already have an owner, or Silver is not a published rung. The property is already set on 7 services that still fail.</td></tr>
+        <tr><td>Own or delete the four unowned services and the ruby2shell resource</td><td>Zero services without an owner team, or a recorded decision to keep them out of service scorecards. They are already outside Operational Readiness and Code Vulnerabilities.</td></tr>
+        <tr><td>Put a failure message on the dark checks</td><td>Security audit, OpenTelemetry, New Relic removal, Slack, the README command checks, and the Reliability SLOs tell the owner the missing fact.</td></tr>
+        <tr><td>Replace the three placeholder remediation links</td><td>Owner, unit-test coverage, and OpenTelemetry link to a real runbook. The OpenTelemetry link should be an instrumentation guide.</td></tr>
+        <tr><td>Decide the 79 Bitbucket repositories</td><td>Each repository has an owner, or the sync is documented as out of scope for vulnerability scorecards. All 79 are unowned, undescribed, and outside Code Vulnerabilities.</td></tr>
+      </tbody>
+    </table>
+    <h3>Medium term</h3>
+    <ul>
+      <li>Copy the parent service owner onto API endpoints, or take endpoints off the ownership initiative. Until then the initiative stays near 17.6%.</li>
+      <li>Require an owner and a tier when a service is created, so the next scratch service cannot land outside Operational Readiness with only an MTTR value filled in.</li>
+      <li>Staff the OpenTelemetry program. Reliability Bronze cannot move while 74 services fail that check. The same program should finish New Relic removal (3 of 79 done).</li>
+      <li>Close the 18 critical-SLA entities (12 services, 6 repositories) and the 60 high-alert failures. Low alerts are already clear.</li>
+      <li>Link DX incident services (1 of 79 today). PagerDuty is already on 76.</li>
+      <li>Add scorecard editors, write the 24 missing descriptions, and set effort estimates on the checks that initiatives depend on.</li>
+      <li>Review the five owned services left out of Operational Readiness: Experimentation, Recommendations, Feature Flags, Tokens, and AI.</li>
+      <li>Remove the empty Agent type, the cool-feature sandbox, and the repository test property that is set on all 163 repos. Fill the team organization property (0 of 55) and repository descriptions (0 of 163).</li>
+      <li>Reconcile the org chart (77 teams, 5 with zero contributors, blank reference ids) with the 55 catalog team entities, 51 of which have not been updated in more than a year.</li>
+    </ul>
+    <h3>Strategic</h3>
+    <ul>
+      <li>Report level attained for ladders. Keep raw fail counts for points scorecards and for true gates. Strict fail-any-check makes DORA, Reliability, Documentation, Security, and Repo AI fabric look universally failed.</li>
+      <li>Split gates (ownership, vulnerabilities, OpenTelemetry) from insight scorecards (AI fabric, meetings, cost). Publish them on different cadences so a dark check cannot paint a whole ladder red.</li>
+      <li>Restore AI session data before treating the repository ladder above Adoption as a practice gap. Both session checks fail every repository.</li>
+      <li>Run DORA as a deploy-time program. MTTR already clears Medium and High for every service. Open-to-deploy is the rung that keeps 71 services below Medium.</li>
+      <li>Wire the security-audit source so the points score and the 30 Apr 2027 initiative can move. The other four security checks already pass between 16 and 45 services.</li>
+      <li>Use the 13 product areas, which are all owned and described, as the rollup for endpoints and services once relation instances are readable. Seven relation definitions exist, including service-provides-api and product-area-parent-of-service. Instance reads are not available on this API.</li>
+      <li>Fold Catalog Health into Quality and Reliability, or give it a distinct question. Two of its checks are duplicates, and it covers 20 services. Widen or retire Package Versions.</li>
+    </ul>
+
+    <h2>6. Operating cadence</h2>
+    <p>Evaluations already run every two hours, and this run found no stale check result. The cadence below is for people. Exemptions are turned on and unused, so a temporary exception still has to be a conversation rather than a scorecard record.</p>
+    <table>
+      <thead><tr><th>Cadence</th><th>Look at</th><th>Act on</th></tr></thead>
+      <tbody>
+        <tr><td>Twice a week, 20 minutes</td><td>Entities created since the last review, plus services with no owner</td><td>Own or delete them. The current queue is the four unowned services and the ruby2shell resource. Two catalog teams were created on 11 Nov and already have owners.</td></tr>
+        <tr><td>Weekly, with the overdue-initiative owners</td><td>OpenTelemetry percent complete (now 5.1%, 261 dev-days) and the 18 critical-SLA entities</td><td>Both initiatives are past due. Christian Haaland owns both. Separate the 12 services from the 6 repositories so the work has two queues.</td></tr>
+        <tr><td>Weekly check quality</td><td>Checks failing more than 95% with an empty message</td><td>Fix the query, add the message, or unpublish. Start with Slack, the two README command checks, the security audit, OpenTelemetry, and New Relic removal.</td></tr>
+        <tr><td>Monthly level review</td><td>Level mix for AI Center of Excellence, DORA, Reliability, Operational readiness, Code vulnerabilities, and Repo AI fabric</td><td>Report movement between levels. AI Center of Excellence is the ladder that can move this month: 51 services are already AI-adopted or better, and wave 1 is at 81.9% with 89 days left.</td></tr>
+        <tr><td>Monthly initiatives</td><td>The five initiatives, including remaining dev-days</td><td>Wave 1 should stay on its 81.9% pace. The owner-team initiative stays near 17.6% until endpoints are assigned or removed from scope. Security stays near 32.1% until the audit check has a source.</td></tr>
+        <tr><td>Quarterly portfolio</td><td>Scorecards with under 30 entities, duplicate check names, empty levels, and empty types</td><td>Fold or retarget Catalog Health, drop or widen Package Versions, delete the Agent type if it is still empty, and either add checks to Quality Bronze, Documentation Gold, and Ownership Gold or remove those empty rungs.</td></tr>
+      </tbody>
+    </table>
+
+    <p class="footer">dx fabric. Ritual V3. 691 entities, 8 entity types, 77 org teams, 17 published scorecards, 134 checks (132 published), 5 initiatives, 11,198 published check results. Generated 20 Nov 2026, 12:58 PM ET. Draft checks excluded. Relation instances and the user directory were not available from this credential.</p>
+  </main>
+</body>
+</html>
