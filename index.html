@@ -105,6 +105,20 @@
       font-weight: 700;
       background: #f3f4f6;
     }
+    td.healthy { background: #f0fdf4; color: #15803d; font-weight: 700; }
+    td.watch { background: #fff7ed; color: #b45309; font-weight: 700; }
+    td.act { background: #fef2f2; color: #b91c1c; font-weight: 700; }
+    .legend { font-size: 13px; margin: 0 0 8px; }
+    .swatch {
+      display: inline-block;
+      margin: 0 8px 0 0;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+    .swatch.healthy { background: #f0fdf4; color: #15803d; }
+    .swatch.watch { background: #fff7ed; color: #b45309; }
+    .swatch.act { background: #fef2f2; color: #b91c1c; }
     .footer {
       margin-top: 28px;
       font-size: 12px;
@@ -124,6 +138,7 @@
     <h1>Ritual V3 catalog health</h1>
     <p class="subtitle">Published scorecards and catalog records evaluated 20 Nov 2026, 11:05 AM ET. Draft checks are excluded. Source: DX catalog, scorecard definitions, and per-entity check results for the Ritual V3 account.</p>
     <p>Latest report: <a href="ritual-v3-2026-11-20-1258.html">Ritual V3 catalog health, 20 Nov 2026, 12:58 PM ET</a>.</p>
+    <p class="legend"><span class="swatch healthy">Healthy</span><span class="swatch watch">Watch</span><span class="swatch act">Act</span></p>
     <p>Full report: <a href="ritual-v3-2026-11-20.html">Ritual V3 catalog health, 20 Nov 2026</a>.</p>
 
     <section class="callout">
@@ -189,34 +204,34 @@
         <tr>
           <td>API endpoint</td>
           <td>373</td>
-          <td>0</td>
-          <td>0</td>
-          <td>373</td>
-          <td>355 last updated 90-180 days ago</td>
+          <td class="act">0</td>
+          <td class="healthy">0</td>
+          <td class="healthy">373</td>
+          <td class="watch">355 last updated 90-180 days ago</td>
         </tr>
         <tr>
           <td>Repository</td>
           <td>163</td>
-          <td>82</td>
-          <td>163</td>
-          <td>163</td>
-          <td>81 last updated 180-365 days ago</td>
+          <td class="watch">82</td>
+          <td class="act">163</td>
+          <td class="healthy">163</td>
+          <td class="watch">81 last updated 180-365 days ago</td>
         </tr>
         <tr>
           <td>Service</td>
           <td>79</td>
-          <td>75</td>
-          <td>3</td>
-          <td>79</td>
-          <td>All updated in the last 30 days</td>
+          <td class="healthy">75</td>
+          <td class="watch">3</td>
+          <td class="healthy">79</td>
+          <td class="healthy">All updated in the last 30 days</td>
         </tr>
         <tr>
           <td>Team</td>
           <td>55</td>
-          <td>55</td>
-          <td>55</td>
-          <td>55</td>
-          <td>51 last updated more than a year ago</td>
+          <td class="healthy">55</td>
+          <td class="act">55</td>
+          <td class="healthy">55</td>
+          <td class="act">51 last updated more than a year ago</td>
         </tr>
       </tbody>
     </table>
