@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ritual V3 catalog health - 20 Nov 2026</title>
+    <title>dx fabric — Catalog health</title>
   <style>
     :root {
       --ink: #1f2937;
@@ -84,6 +84,12 @@
       text-transform: uppercase;
       letter-spacing: 0.03em;
     }
+    .metric.healthy { background: #f0fdf4; border-color: #bbf7d0; }
+    .metric.healthy .v { color: #15803d; }
+    .metric.watch { background: #fff7ed; border-color: #fed7aa; }
+    .metric.watch .v { color: #b45309; }
+    .metric.act { background: #fef2f2; border-color: #fecaca; }
+    .metric.act .v { color: #b91c1c; }
     ul { padding-left: 20px; }
     table {
       width: 100%;
@@ -135,78 +141,27 @@
 <body>
   <main class="wrap">
     <div class="eyebrow">dx fabric</div>
-    <h1>Ritual V3 catalog health</h1>
-    <p class="subtitle">Published scorecards and catalog records for the Ritual V3 account. Draft checks are excluded. The latest evaluation is 20 Nov 2026, 1:20 PM ET.</p>
-    <p>Latest report: <a href="ritual-v3-2026-11-20-1320.html">Ritual V3 catalog health, 20 Nov 2026, 1:20 PM ET</a>.</p>
+    <h1>Catalog health</h1>
+    <p class="subtitle">Latest report is the DX account, evaluated 20 Nov 2026, 3:54 PM ET. Draft checks are excluded. Earlier reports from the Ritual V3 account stay linked below.</p>
+    <p>Latest report: <a href="dx-2026-11-20-1554.html">DX catalog health, 20 Nov 2026, 3:54 PM ET</a>.</p>
     <p class="legend"><span class="swatch healthy">Healthy</span><span class="swatch watch">Watch</span><span class="swatch act">Act</span></p>
-    <p>Earlier reports: <a href="ritual-v3-2026-11-20-1258.html">12:58 PM ET</a> · <a href="ritual-v3-2026-11-20.html">20 Nov 2026</a>.</p>
+    <p>Earlier reports: <a href="ritual-v3-2026-11-20-1320.html">Ritual V3, 1:20 PM ET</a> · <a href="ritual-v3-2026-11-20-1258.html">12:58 PM ET</a> · <a href="ritual-v3-2026-11-20.html">20 Nov 2026</a>.</p>
 
     <section class="callout">
-      <strong>Two programs are overdue, and two checks block entire ladders.</strong>
-      <p>OpenTelemetry migration is 112 days past due at 5.1% complete, and critical CVE remediation is 14 days past due with 18 entities still outside the critical SLA. Documentation has no service on Bronze because two README command checks fail all 79 services, and Entity ownership cannot reach Silver because the Slack-team check fails all 459 in-scope entities.</p>
+      <strong>Service ladders stop early, and every account points scorecard is strict-red.</strong>
+      <p>For the DX account, strict pass rate is 40.1% and 820 of 14,692 entities are on a scorecard. Production Readiness has 6 services on Bronze and none higher. My Custom Scorecard6 has no service on Bronze. Improve program health is due in 10 days at 89.1%. The full breakdown is in the 3:54 PM ET report.</p>
     </section>
 
     <h2>Headline metrics</h2>
     <div class="metrics">
-      <div class="metric"><div class="v">691</div><div class="k">Catalog entities</div></div>
-      <div class="metric"><div class="v">48.8%</div><div class="k">Checks passing</div></div>
-      <div class="metric"><div class="v">66.6%</div><div class="k">Entities with no owner</div></div>
-      <div class="metric"><div class="v">0</div><div class="k">Services fully green</div></div>
+      <div class="metric"><div class="v">14,692</div><div class="k">Catalog entities</div></div>
+      <div class="metric act"><div class="v">40.1%</div><div class="k">Checks passing</div></div>
+      <div class="metric act"><div class="v">5.6%</div><div class="k">Entities on a scorecard</div></div>
+      <div class="metric act"><div class="v">0</div><div class="k">Services fully green</div></div>
     </div>
-    <p>11,198 published check results across 677 scored entities: 5,466 pass, 394 warn, 5,338 fail. Every result executed within the last 1.7 hours (median 0.9 hours), inside the 2-hour evaluation frequency. Exemptions in force: 0. The full breakdown is in the 1:20 PM ET report.</p>
+    <p>18,592 published check results: 7,450 pass, 11 warn, 11,131 fail. Draft checks are excluded. Exemptions in force: 0.</p>
 
-    <h2>Health KPIs and coverage</h2>
-    <p>The catalog is integration-fed and recently evaluated. Coverage is wide. Completeness is not. 518 of 691 entities were created via API. Services were all touched in the last 30 days. Team records and repository descriptions were not. 231 entities have a team owner and 460 do not. 75 of 79 services are owned. All 373 API endpoints are unowned. No entity has a user owner.</p>
-
-    <h2>Entity detail snapshot</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Entity type</th>
-          <th>Records</th>
-          <th>Owned</th>
-          <th>Description blank</th>
-          <th>On a scorecard</th>
-          <th>Stale signal</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>API endpoint</td>
-          <td>373</td>
-          <td class="act">0</td>
-          <td class="healthy">0</td>
-          <td class="healthy">373</td>
-          <td class="watch">355 last updated 90-180 days ago</td>
-        </tr>
-        <tr>
-          <td>Repository</td>
-          <td>163</td>
-          <td class="watch">82</td>
-          <td class="act">163</td>
-          <td class="healthy">163</td>
-          <td class="watch">81 last updated 180-365 days ago</td>
-        </tr>
-        <tr>
-          <td>Service</td>
-          <td>79</td>
-          <td class="healthy">75</td>
-          <td class="watch">3</td>
-          <td class="healthy">79</td>
-          <td class="healthy">All updated in the last 30 days</td>
-        </tr>
-        <tr>
-          <td>Team</td>
-          <td>55</td>
-          <td class="healthy">55</td>
-          <td class="act">55</td>
-          <td class="healthy">55</td>
-          <td class="act">51 last updated more than a year ago</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <p class="footer">dx fabric. Ritual V3. Latest full report: 20 Nov 2026, 1:20 PM ET.</p>
+    <p class="footer">dx fabric. DX. Latest full report: 20 Nov 2026, 3:54 PM ET.</p>
   </main>
 </body>
 </html>

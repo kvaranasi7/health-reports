@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>dx fabric — DX catalog health, 20 Nov 2026, 3:54 PM ET</title>
+  <style>
+    :root {
+      --ink: #1f2937;
+      --muted: #6b7280;
+      --line: #111827;
+      --panel: #f9fafb;
+      --accent: #5b5bf0;
+      --danger-bg: #fff7ed;
+      --danger-line: #fb923c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: #fff;
+      line-height: 1.55;
+    }
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+    }
+    .eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--accent);
+      border-radius: 4px;
+      padding: 4px 8px;
+      margin-bottom: 14px;
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: 36px;
+      line-height: 1.1;
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: 15px;
+      margin: 0 0 26px;
+    }
+    h2 {
+      margin: 34px 0 10px;
+      font-size: 24px;
+      border-bottom: 2px solid var(--line);
+      padding-bottom: 6px;
+    }
+    h3 {
+      margin: 22px 0 8px;
+      font-size: 18px;
+    }
+    .callout {
+      border-left: 6px solid var(--danger-line);
+      background: var(--danger-bg);
+      padding: 14px 16px;
+      border-radius: 6px;
+      margin: 22px 0;
+    }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 16px 0 10px;
+    }
+    .metric {
+      border: 1px solid #e5e7eb;
+      background: var(--panel);
+      border-radius: 8px;
+      padding: 10px 12px;
+    }
+    .metric .v {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.15;
+    }
+    .metric .k {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .metric.healthy { background: #f0fdf4; border-color: #bbf7d0; }
+    .metric.healthy .v { color: #15803d; }
+    .metric.watch { background: #fff7ed; border-color: #fed7aa; }
+    .metric.watch .v { color: #b45309; }
+    .metric.act { background: #fef2f2; border-color: #fecaca; }
+    .metric.act .v { color: #b91c1c; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+    th, td {
+      border: 1px solid #d1d5db;
+      padding: 8px 10px;
+      vertical-align: top;
+    }
+    th {
+      background: #111827;
+      color: #fff;
+      text-align: left;
+    }
+    td:first-child {
+      font-weight: 700;
+      background: #f3f4f6;
+    }
+    td.n { text-align: right; font-variant-numeric: tabular-nums; }
+    td.healthy { background: #f0fdf4; color: #15803d; font-weight: 700; }
+    td.watch { background: #fff7ed; color: #b45309; font-weight: 700; }
+    td.act { background: #fef2f2; color: #b91c1c; font-weight: 700; }
+    .legend { font-size: 13px; margin: 0 0 8px; }
+    .swatch {
+      display: inline-block;
+      margin: 0 8px 0 0;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+    .swatch.healthy { background: #f0fdf4; color: #15803d; }
+    .swatch.watch { background: #fff7ed; color: #b45309; }
+    .swatch.act { background: #fef2f2; color: #b91c1c; }
+    .stack {
+      display: flex;
+      height: 14px;
+      width: 128px;
+      border-radius: 3px;
+      overflow: hidden;
+      background: #f3f4f6;
+    }
+    .stack span { display: block; height: 100%; }
+    .ibar {
+      display: inline-block;
+      width: 64px;
+      height: 8px;
+      background: #e5e7eb;
+      border-radius: 4px;
+      margin-left: 6px;
+      vertical-align: middle;
+      overflow: hidden;
+    }
+    .ibar i { display: block; height: 100%; }
+    a { color: var(--accent); }
+    .footer {
+      margin-top: 28px;
+      font-size: 12px;
+      color: var(--muted);
+      border-top: 1px solid #e5e7eb;
+      padding-top: 12px;
+    }
+    @media (max-width: 760px) {
+      .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      h1 { font-size: 30px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="eyebrow">dx fabric</div>
+    <h1>DX catalog health</h1>
+    <p class="subtitle">Published scorecards and catalog records evaluated 20 Nov 2026, 3:54 PM ET. Draft checks are excluded. Source: DX catalog, scorecard definitions, and per-entity check results for the DX account.</p>
+    <p class="legend"><span class="swatch healthy">Healthy</span><span class="swatch watch">Watch</span><span class="swatch act">Act</span> Highlighted cells use these colors. Row labels stay gray.</p>
+
+    <section class="callout">
+      <strong>Service ladders stop early, and every account points scorecard is strict-red.</strong>
+      <p>Production Readiness has 6 services on Bronze and none higher. The dashboard, open-PR, and wiki checks fail all 88 services and return no message. My Custom Scorecard6 has no service on Bronze, because rate limiting, Snyk, and renovate fail all 88. DORA Metrics is published with no checks, so all 88 services sit at Incomplete. My test initiative is 21 days overdue at 0% on a check named Fail. Improve program health, the priority-0 initiative, is due in 10 days at 89.1% and matches a single check.</p>
+    </section>
+
+    <h2>1. Executive summary</h2>
+    <p>DX has a large, integration-fed catalog and a small scorecard portfolio that evaluates every two hours. The pipeline is fresh. The operating picture is an AWS-heavy catalog sitting outside the scorecards, service ladders that cannot climb, and points scorecards on which no account passes every published check.</p>
+    <div class="metrics">
+      <div class="metric"><div class="v">14,692</div><div class="k">Catalog entities</div></div>
+      <div class="metric act"><div class="v">40.1%</div><div class="k">Checks passing</div></div>
+      <div class="metric act"><div class="v">5.6%</div><div class="k">Entities on a scorecard</div></div>
+      <div class="metric act"><div class="v">0</div><div class="k">Services fully green</div></div>
+    </div>
+    <p>18,592 published check results across 820 scored entities: 7,450 pass, 11 warn, and 11,131 fail. Strict pass rate is 40.1%. Soft pass rounds to the same 40.1%, because the 11 warnings are too few to move it and every warning arrived with passed = true. Results were executed between 20 minutes and 1.7 hours before collection (median 1.7 hours), inside the 2-hour evaluation frequency. Exemptions in force: 0. No scored entity passes every published check on every scorecard it sits on.</p>
+    <p>Failures concentrate in a few wide checks. The five largest account for 3,441 of 11,131 failures (30.9%): Competitive Takeaway Date (729), Custom Dash Used by VP (714), 4+ Studies (694), 4+ PlatformX (691), and PlatformX Projects + AI Studies &gt; 1 (613). Six service checks fail 88 of 88 and add 528 more. The other 13,324 entities, mostly AWS instances, have no published check results.</p>
+
+    <h2>2. Health KPIs and coverage</h2>
+    <p>The catalog is mostly auto-created infrastructure. 12,089 of 14,692 entities (82.3%) were created from AWS. Another 1,924 were created via API, 136 from GitHub, and 69 from the UI. Scorecards name only accounts and services. Coverage of those two types is real. Coverage of the rest of the catalog is zero. 404 entities have a team owner (2.7%). 1,038 have a user owner. Counting either kind, 1,430 entities have an owner (9.7%) and 13,262 have neither (90.3%). One entity has a group owner. No entity has a domain set. No property is required except on Cursor Automations, where the required fields are filled.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Population</th>
+          <th>Entities</th>
+          <th>Check pass rate</th>
+          <th>Any owner</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Accounts</td><td class="n">1,280</td><td class="act">41.5% (7,211 / 17,361)</td><td class="n watch">984 user, 0 team</td></tr>
+        <tr><td>Services</td><td class="n">88</td><td class="act">19.4% (239 / 1,231)</td><td class="n act">21 of 88</td></tr>
+        <tr><td>Everything else</td><td class="n">13,324</td><td class="act">Not scored</td><td class="n act">425</td></tr>
+      </tbody>
+    </table>
+    <p>820 of 14,692 entities sit on at least one scorecard (5.6%). Outside AWS that share is 820 of 2,603 (31.5%). All 88 services sit on all four service scorecards. 732 of 1,280 accounts sit on a points scorecard: 64 on three, 663 on two, and 5 on one. 548 accounts match no scorecard filter. Relation definitions exist (7). Relation instance reads return unknown method on this credential. The user directory is readable (224 people) and is not listed here.</p>
+
+    <h3>Entity detail</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Entity type</th>
+          <th>Records</th>
+          <th>Team owner</th>
+          <th>User owner</th>
+          <th>Description blank</th>
+          <th>On a scorecard</th>
+          <th>Stale signal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>AWS EC2 instance</td><td class="n">12,037</td><td class="n act">0</td><td class="n act">0</td><td class="n act">12,037</td><td class="n act">0</td><td class="watch">All updated 30–90 days ago</td></tr>
+        <tr><td>Account</td><td class="n">1,280</td><td class="n act">0</td><td class="n watch">984</td><td class="n act">1,278</td><td class="n watch">732</td><td class="healthy">979 updated in the last 30 days</td></tr>
+        <tr><td>Cursor automation</td><td class="n">670</td><td class="n act">0</td><td class="n act">12</td><td class="n healthy">0</td><td class="n act">0</td><td class="healthy">All updated in the last 30 days</td></tr>
+        <tr><td>Resource</td><td class="n">325</td><td class="n healthy">324</td><td class="n">0</td><td class="n act">325</td><td class="n act">0</td><td class="act">322 updated more than a year ago</td></tr>
+        <tr><td>Service</td><td class="n">88</td><td class="n act">18</td><td class="n act">6</td><td class="n act">71</td><td class="n healthy">88</td><td class="healthy">All updated in the last 30 days</td></tr>
+        <tr><td>API</td><td class="n">72</td><td class="n act">0</td><td class="n act">0</td><td class="n act">71</td><td class="n watch">0</td><td class="watch">60 updated 90–180 days ago</td></tr>
+        <tr><td>Repository</td><td class="n">71</td><td class="n act">0</td><td class="n act">0</td><td class="n act">71</td><td class="n watch">0</td><td class="watch">60 updated 90–180 days ago</td></tr>
+        <tr><td>Solutions engineer</td><td class="n">38</td><td class="n act">10</td><td class="n healthy">36</td><td class="n act">38</td><td class="n watch">0</td><td class="watch">23 updated 90–180 days ago</td></tr>
+        <tr><td>AWS S3 bucket</td><td class="n">35</td><td class="n act">0</td><td class="n act">0</td><td class="n act">35</td><td class="n watch">0</td><td class="watch">All updated 180–365 days ago</td></tr>
+        <tr><td>Team</td><td class="n">25</td><td class="n healthy">25</td><td class="n">0</td><td class="n act">24</td><td class="n watch">0</td><td class="watch">7 updated more than 180 days ago</td></tr>
+        <tr><td>Product area</td><td class="n">19</td><td class="n healthy">19</td><td class="n">0</td><td class="n healthy">0</td><td class="n watch">0</td><td class="watch">All updated 90–180 days ago</td></tr>
+        <tr><td>AWS EKS cluster</td><td class="n">9</td><td class="n act">0</td><td class="n act">0</td><td class="n act">9</td><td class="n watch">0</td><td class="watch">All updated 180–365 days ago</td></tr>
+        <tr><td>AWS ElastiCache</td><td class="n">7</td><td class="n act">0</td><td class="n act">0</td><td class="n act">7</td><td class="n watch">0</td><td class="watch">All updated 180–365 days ago</td></tr>
+        <tr><td>Package</td><td class="n">7</td><td class="n healthy">7</td><td class="n">0</td><td class="n watch">1</td><td class="n watch">0</td><td class="act">6 updated more than a year ago</td></tr>
+        <tr><td>Product pillar</td><td class="n">5</td><td class="n act">1</td><td class="n act">0</td><td class="n act">5</td><td class="n watch">0</td><td class="watch">All updated 90–180 days ago</td></tr>
+        <tr><td>User journey</td><td class="n">3</td><td class="n act">0</td><td class="n act">0</td><td class="n healthy">0</td><td class="n watch">0</td><td class="act">2 updated more than a year ago</td></tr>
+        <tr><td>AWS Lambda</td><td class="n">1</td><td class="n act">0</td><td class="n act">0</td><td class="n act">1</td><td class="n watch">0</td><td class="watch">Updated 180–365 days ago</td></tr>
+        <tr><td>Emma Testing</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="watch">Type is empty</td></tr>
+        <tr><td>AWS RDS instance</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="watch">Type is empty</td></tr>
+      </tbody>
+    </table>
+    <p>EC2 scorecard membership was checked on a 40-instance sample. None of those instances is on a scorecard, and no scorecard filter names an AWS type. Metadata above was read for all 12,037 instances. The other non-EC2 types were checked entity by entity and returned no scorecards.</p>
+
+    <h3>Ownership and metadata</h3>
+    <table>
+      <thead>
+        <tr><th>Finding</th><th>Where</th><th>Scale</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>No team or user owner</td><td>Catalog entities</td><td>13,262 of 14,692 (90.3%)</td><td class="act">Act</td></tr>
+        <tr><td>No team owner</td><td>Catalog entities</td><td>14,288 of 14,692 (97.3%). Team owners exist on 404 records</td><td class="act">Act</td></tr>
+        <tr><td>Accounts use user owners</td><td>Account</td><td>984 of 1,280 have a user owner. 0 have a team. 296 have neither</td><td class="watch">Watch</td></tr>
+        <tr><td>Services are mostly unowned</td><td>Service</td><td>67 of 88 have neither owner. 15 team only, 3 user only, 3 both</td><td class="act">Act</td></tr>
+        <tr><td>EC2 has no owner and no scorecard</td><td>AWS EC2 instance</td><td>12,037 of 12,037. Descriptions are blank. Updated 30–90 days ago</td><td class="act">Act</td></tr>
+        <tr><td>Automations are described and unowned</td><td>Cursor automation</td><td>Required properties filled on 670 of 670. A user owner is on 12. No team. No scorecard</td><td class="watch">Watch</td></tr>
+        <tr><td>Resources sit on one team</td><td>Resource</td><td>324 of 325 owned, all by one team. Descriptions blank. 322 updated more than a year ago. Properties empty</td><td class="act">Act</td></tr>
+        <tr><td>Repos and APIs are blank</td><td>Repository and API</td><td>0 owners. Descriptions blank on 71 of 71 repos and 71 of 72 APIs</td><td class="act">Act</td></tr>
+        <tr><td>Service owner check is close to the record</td><td>Services</td><td>Owner checks pass 22 of 88. 21 services currently have a team or user owner</td><td class="watch">Watch</td></tr>
+        <tr><td>Tier is sparse</td><td>Services</td><td>Tier property filled on 10. Custom scorecard passes 10. Production Readiness passes 9 of 87</td><td class="act">Act</td></tr>
+        <tr><td>README property is not the check</td><td>Services</td><td>Local-dev README property filled on 35. The Production Readiness check passes 18</td><td class="watch">Watch</td></tr>
+        <tr><td>Domain is unset</td><td>Catalog entities</td><td>0 of 14,692</td><td class="watch">Watch</td></tr>
+        <tr><td>Org chart is larger than the catalog</td><td>Org teams vs team entities</td><td>35 org teams, 5 with zero contributors, all 35 reference ids empty. 25 catalog teams, 24 with a blank description</td><td class="watch">Watch</td></tr>
+        <tr><td>Product areas are the clean set</td><td>Product area</td><td>19 of 19 owned and described. None is on a scorecard. All updated 90–180 days ago</td><td class="watch">Watch</td></tr>
+      </tbody>
+    </table>
+
+    <h2>3. Scorecarding effectiveness</h2>
+    <p>All 8 scorecards are published. Five are level ladders and three are points. Each evaluates every 2 hours. The same 9 admins are on every scorecard. Editors exist on two: Taylor Edwards on Solutions Implementation Health, and Derek Schaefer on Production Readiness. Six scorecards have a blank description. There are no SQL errors. Seven draft checks are excluded from the rates below. Draft rows were not counted in the pass, warn, and fail totals. Exemptions are enabled on seven scorecards and turned off on Program Health. None are in force.</p>
+    <section class="callout">
+      <strong>Strict pass is the wrong headline for the points scorecards.</strong>
+      <p>An account fails the scorecard when any published check fails. On Solutions Implementation Health the best accounts still fail two checks, Competitive Takeaway Date and Custom Dash Used by VP, so the scorecard shows 0 of 731 passing. Several adoption checks on that scorecard already pass more than 80% of accounts. On Program Health, 1–3 Studies and 4+ Studies both pass on the same accounts, and the same is true of the PlatformX pair. The bands are not ranges, so “fail any check” stays red even when the underlying numbers are healthy.</p>
+    </section>
+    <table>
+      <thead>
+        <tr>
+          <th>Scorecard</th>
+          <th>In scope</th>
+          <th>Pass</th>
+          <th>Warn</th>
+          <th>Fail</th>
+          <th>What the result is saying</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Solutions Implementation Health</td><td class="n">731</td><td class="n act">0</td><td class="n">0</td><td class="n act">731</td><td>Points. AI connection passes 656 of 731. Competitive takeaway passes 2. Custom dash passes 17. No account passes every check.</td></tr>
+        <tr><td>[CS Dash] Program Health</td><td class="n">727</td><td class="n act">0</td><td class="n">0</td><td class="n act">727</td><td>Points. Fourteen checks return 726 results. AI connection passes 647 of 726, the same count as the initiative. Fabric Implemented? runs on 105 accounts and passes 17.</td></tr>
+        <tr><td>Fabric Implementation Health</td><td class="n">64</td><td class="n act">0</td><td class="n">0</td><td class="n act">64</td><td>Narrow points filter. Catalog-as-source (API) is the only check with warnings: 40 pass, 11 warn, 13 fail. 1–3 published scorecards passes 51.</td></tr>
+        <tr><td>Production Readiness</td><td class="n">88</td><td class="n act">0</td><td class="n">0</td><td class="n act">88</td><td>6 services reach Bronze. Dashboard, open PRs, and wiki fail 88 of 88, so Silver and Gold are closed.</td></tr>
+        <tr><td>My Custom Scorecard6</td><td class="n">88</td><td class="n act">0</td><td class="n">0</td><td class="n act">88</td><td>Rate limiting, Snyk, and renovate fail 88 of 88. 10 services pass owner and tier and still sit below Bronze. Gold’s only check is a draft.</td></tr>
+        <tr><td>Draft test</td><td class="n">88</td><td class="n healthy">35</td><td class="n">0</td><td class="n act">53</td><td>The only ladder with a strict pass. Both checks are Silver. Bronze and Gold have no checks. Repo link fails 53 of 88 and returns no message.</td></tr>
+        <tr><td>DORA Metrics</td><td class="n">88</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td>Published ladder with zero checks. All 88 services stay at Incomplete. Nothing can pass.</td></tr>
+        <tr><td>Test for Initiative</td><td class="n">1</td><td class="n act">0</td><td class="n">0</td><td class="n act">1</td><td>One entity. The only check is named Fail, its description is a placeholder, and the result is a fail with no message. Silver and Gold have no checks.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Level attained</h3>
+    <p>The bar shows how entities split across rungs. It is drawn when more than one rung holds a readable share. A ladder sitting in one rung, a points scorecard, and a population too small to read have no bar.</p>
+    <table>
+      <thead>
+        <tr><th>Ladder</th><th>Not on a rung</th><th>Bronze</th><th>Silver</th><th>Gold</th><th>Mix</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Draft test (88)</td>
+          <td class="n act">53 Incomplete</td>
+          <td class="watch">0, no checks</td>
+          <td class="watch">35</td>
+          <td class="watch">0, no checks</td>
+          <td><div class="stack" role="img" aria-label="53 Incomplete, 35 Silver"><span style="width:60.2%;background:#fca5a5"></span><span style="width:39.8%;background:#fdba74"></span></div></td>
+        </tr>
+        <tr>
+          <td>Production Readiness (88)</td>
+          <td class="n act">82 Incomplete</td>
+          <td class="watch">6</td>
+          <td class="act">0</td>
+          <td class="act">0</td>
+          <td><div class="stack" role="img" aria-label="82 Incomplete, 6 Bronze"><span style="width:93.2%;background:#fca5a5"></span><span style="width:6.8%;background:#fdba74"></span></div></td>
+        </tr>
+        <tr>
+          <td>My Custom Scorecard6 (88)</td>
+          <td class="n act">88 None</td>
+          <td class="act">0</td>
+          <td class="act">0</td>
+          <td class="watch">0, draft only</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>DORA Metrics (88)</td>
+          <td class="n act">88 Incomplete</td>
+          <td class="watch">0, no checks</td>
+          <td class="watch">0, no checks</td>
+          <td class="watch">0, no checks</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Test for Initiative (1)</td>
+          <td class="n act">1 Incomplete</td>
+          <td class="act">0</td>
+          <td class="watch">0, no checks</td>
+          <td class="watch">0, no checks</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    <p>On Production Readiness, the 6 Bronze services are the ones that pass tier, owner, README, and linked repo, and then fail dashboard, open PRs, and wiki. On My Custom Scorecard6, 10 services fail only the three universal Bronze checks, 12 fail four checks, and 66 fail all five. On Draft test, 35 services pass both Silver checks and 53 fail only the repo link. The output check passes 88 of 88 and has an empty description.</p>
+
+    <h3>Check quality</h3>
+    <table>
+      <thead>
+        <tr><th>Issue</th><th>Where</th><th>Scale</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>No description</td><td>5 of 47 published checks</td><td>Draft test: both checks. Solutions: Team Lead Usage &gt; 50%, Custom Dash Used by VP, Allocation Customized</td><td class="watch">Watch</td></tr>
+        <tr><td>Template text only</td><td>Has Owner and Has tier</td><td>My Custom Scorecard6. The body is the empty “why this matters” template</td><td class="watch">Watch</td></tr>
+        <tr><td>Placeholder description</td><td>Test for Initiative / Fail</td><td>The description says the real text would go here. The check fails its one entity</td><td class="act">Act</td></tr>
+        <tr><td>No effort estimate</td><td>47 of 47 published checks</td><td>Neither initiative carries remaining dev-days. Effort is blank everywhere</td><td class="watch">Watch</td></tr>
+        <tr><td>No remediation link</td><td>47 of 47 published checks</td><td>A failing owner has nowhere to go from the check</td><td class="act">Act</td></tr>
+        <tr><td>Failures return no message</td><td>Service gates and two Solutions checks</td><td>Rate limiting, Snyk, renovate, dashboard, open PRs, and wiki: 88 of 88. Competitive takeaway: 729 of 729 failures. Custom dash: 714 of 714 failures</td><td class="act">Act</td></tr>
+        <tr><td>Bands are not ranges</td><td>Program Health and Fabric</td><td>1–3 Studies and 4+ Studies both pass on the same accounts. The same overlap shows up for PlatformX, for 1–2 vs 3+ initiatives, and for 1–3 vs 4+ scorecards</td><td class="watch">Watch</td></tr>
+        <tr><td>Duplicate check names</td><td>Solutions and Program Health</td><td>At Least 1 AI DXDC Connection, and Team Lead Usage &gt; 50%. Pass counts differ, so the queries are not the same check</td><td class="watch">Watch</td></tr>
+        <tr><td>Empty rungs</td><td>DORA, Draft test, Test for Initiative, Custom6 Gold</td><td>DORA’s three levels have no checks. Draft test Bronze and Gold are empty. Custom6 Gold’s only check is still a draft</td><td class="watch">Watch</td></tr>
+        <tr><td>A check runs on a slice</td><td>Program Health / Fabric Implemented?</td><td>105 results, 17 pass. The other published Program Health checks return 726</td><td class="watch">Watch</td></tr>
+        <tr><td>Exemptions are unused</td><td>7 scorecards enabled, Program Health off</td><td>0 exemptions in force</td><td class="watch">Watch</td></tr>
+        <tr><td>SQL errors</td><td>Scorecard definitions</td><td>0 errors. 33 of 47 published checks have output enabled</td><td class="healthy">Healthy</td></tr>
+        <tr><td>Published test scorecards</td><td>Test for Initiative, Draft test, My Custom Scorecard6, DORA Metrics</td><td>They evaluate every 2 hours. DORA cannot pass. Test for Initiative is hard-coded to fail</td><td class="act">Act</td></tr>
+      </tbody>
+    </table>
+
+    <h2>4. Top risks and bottlenecks</h2>
+    <table>
+      <thead>
+        <tr><th>Risk</th><th>Scale</th><th>Why it is stuck</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Program health gate still open</td><td class="watch">79 of 726 accounts</td><td>Improve program health is 89.1% (647 of 726), due 30 Nov 2026, 10 days left. Owner: Tyler Wray. The 647 passes match At Least 1 AI DXDC Connection and no other check. The scorecard itself is strict-red because other checks still fail.</td></tr>
+        <tr><td>Test initiative is overdue</td><td class="act">0 of 1</td><td>My test initiative is 21 days past due (due 30 Oct 2026), priority 2, 0% complete. Owner: Kaden Hendrickson. The only check is named Fail and returns no message.</td></tr>
+        <tr><td>Production Readiness cannot reach Silver</td><td class="act">88 of 88 services</td><td>6 services are Bronze. Dashboard, open PRs, and wiki fail everyone with an empty message. Linked repo already passes 35. The upper rungs are closed by those three checks.</td></tr>
+        <tr><td>Custom6 cannot reach Bronze</td><td class="act">88 of 88 services</td><td>Rate limiting, Snyk, and renovate fail everyone with an empty message. 10 services already pass owner and tier. Gold is a draft, so the top rung has no published check.</td></tr>
+        <tr><td>DORA is an empty ladder</td><td class="act">88 services, 0 checks</td><td>Bronze, Silver, and Gold are published and empty. Every service stays Incomplete. The scorecard still evaluates every 2 hours.</td></tr>
+        <tr><td>Points scorecards show 0% healthy</td><td class="act">731 + 727 + 64 accounts</td><td>Strict fail-any-check paints Solutions, Program Health, and Fabric entirely red. The five biggest failing checks are aspirational bands and two near-empty fields, and they are 30.9% of all failures.</td></tr>
+        <tr><td>Half of accounts are outside the filters</td><td class="watch">548 of 1,280</td><td>732 accounts are scored. The SQL filters do not name the other 548, so they cannot move a scorecard or an initiative.</td></tr>
+        <tr><td>AWS is the catalog</td><td class="act">12,089 of 14,692</td><td>EC2, S3, EKS, ElastiCache, and Lambda have no owner, no description, and no scorecard. EC2 alone is 12,037 records, all updated 30–90 days ago. They dominate any catalog-wide ownership rate.</td></tr>
+        <tr><td>Service ownership gap</td><td class="act">67 of 88</td><td>These services have no team and no user owner. They are still on all four service scorecards. Service check pass rate is 19.4%.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Initiatives</h3>
+    <table>
+      <thead>
+        <tr><th>Initiative</th><th>Due</th><th>Complete</th><th>Checks</th><th>Owner</th><th>State</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Improve program health</td><td class="watch">30 Nov 2026</td><td class="watch">89.1%<span class="ibar"><i style="width:89.1%;background:#b45309"></i></span></td><td class="watch">647 / 726</td><td>Tyler Wray</td><td class="watch">10 days left</td></tr>
+        <tr><td>My test initiative</td><td class="act">30 Oct 2026</td><td class="act">0%<span class="ibar"><i style="width:0%;background:#b91c1c"></i></span></td><td class="act">0 / 1</td><td>Kaden Hendrickson</td><td class="act">21 days overdue</td></tr>
+      </tbody>
+    </table>
+    <p>Two initiatives can be compared, so each row carries its percent. Improve program health is the priority-0 item and is close, with 10 days left. The overdue item is a test scorecard. Remaining dev-days are 0 on both.</p>
+
+    <h2>5. Prioritized roadmap</h2>
+    <h3>Quick wins</h3>
+    <table>
+      <thead><tr><th>Action</th><th>Done when</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Unpublish or fix the six silent service checks</td><td>Rate limiting, Snyk, renovate, dashboard, open PRs, and wiki either return a message an owner can act on, or they are unpublished so Bronze and Silver can move.</td><td class="act">Act</td></tr>
+        <tr><td>Retire the hard-coded Fail check</td><td>Test for Initiative is unpublished, or its check returns a real status. The overdue 0% initiative closes with it.</td><td class="act">Act</td></tr>
+        <tr><td>Unpublish DORA or add checks</td><td>The ladder is hidden until Bronze, Silver, and Gold each have a published check.</td><td class="act">Act</td></tr>
+        <tr><td>Add a failure message on the dark account checks</td><td>Competitive takeaway (729) and custom dash (714) tell the owner which field is empty.</td><td class="act">Act</td></tr>
+        <tr><td>Stop the overlapping bands</td><td>1–3 and 4+ checks cannot both pass on the same account, on Studies, PlatformX, initiatives, and scorecard counts.</td><td class="watch">Watch</td></tr>
+        <tr><td>Own or exclude the 67 unowned services</td><td>Each service has a team or user owner, or it is removed from the four service scorecards on purpose.</td><td class="act">Act</td></tr>
+      </tbody>
+    </table>
+    <h3>Medium term</h3>
+    <table>
+      <thead><tr><th>Action</th><th>Why</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Finish the AI connection gate</td><td>79 accounts still fail the check that matches the 89.1% initiative, and the due date is 30 Nov.</td><td class="watch">Watch</td></tr>
+        <tr><td>Report check pass rate on points scorecards</td><td>Strict pass is 0 of 731 and 0 of 727 while several adoption checks already clear 80%.</td><td class="act">Act</td></tr>
+        <tr><td>Decide the 548 unscored accounts</td><td>They sit outside every SQL filter, so they cannot move Program Health or Solutions.</td><td class="watch">Watch</td></tr>
+        <tr><td>Scope AWS out of catalog health, or own it at sync</td><td>12,089 AWS records have no owner and no scorecard, and they pull the catalog ownership rate to 9.7%.</td><td class="act">Act</td></tr>
+        <tr><td>Fill service, repo, and API descriptions</td><td>Descriptions are blank on 71 of 88 services, 71 of 71 repositories, and 71 of 72 APIs.</td><td class="act">Act</td></tr>
+        <tr><td>Refresh resource metadata</td><td>324 resources share one team. Descriptions and properties are empty, and 322 were updated more than a year ago.</td><td class="act">Act</td></tr>
+        <tr><td>Add editors, descriptions, and effort</td><td>Six scorecards have no description, 47 checks have no effort, 47 have no link, and only two scorecards have an editor.</td><td class="watch">Watch</td></tr>
+        <tr><td>Put a scorecard on Cursor automations, or an owner</td><td>670 records have required fields and descriptions. 12 have a user owner. None is scored.</td><td class="watch">Watch</td></tr>
+      </tbody>
+    </table>
+    <h3>Strategic</h3>
+    <table>
+      <thead><tr><th>Action</th><th>Why</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Split test ladders from the customer portfolio</td><td>Draft test, My Custom Scorecard6, DORA Metrics, and Test for Initiative evaluate on the same two-hour cadence as Program Health.</td><td class="act">Act</td></tr>
+        <tr><td>Treat points scorecards as adoption views</td><td>Fail-any-check makes Fabric, Solutions, and Program Health look universally failed.</td><td class="act">Act</td></tr>
+        <tr><td>Pick one owner model per type</td><td>Accounts are user-owned (984 of 1,280). Services are rarely team-owned (18 of 88). The owner checks pass 22, close to the 21 services that have any owner today.</td><td class="watch">Watch</td></tr>
+        <tr><td>Make service creation require an owner and a tier</td><td>67 services landed with neither owner, and tier is filled on 10 of 88. Nothing on the service type is required.</td><td class="act">Act</td></tr>
+        <tr><td>Use level attained for the real ladders</td><td>Production Readiness has a Bronze cohort of 6. Draft test has a Silver cohort of 35. Those movements are invisible in a strict-fail rollup.</td><td class="watch">Watch</td></tr>
+        <tr><td>Roll APIs through product areas when relations work</td><td>All 19 product areas are owned and described. Seven relation definitions exist, including service-provides-api. Instance reads are not available on this API.</td><td class="watch">Watch</td></tr>
+        <tr><td>Fold empty types and empty rungs</td><td>Emma Testing and AWS RDS have no entities. DORA, Draft test Bronze and Gold, and Test for Initiative Silver and Gold have no published checks.</td><td class="watch">Watch</td></tr>
+      </tbody>
+    </table>
+
+    <h2>6. Operating cadence</h2>
+    <p>Evaluations already run every two hours, and this run found no stale check result. The oldest published result was 1.7 hours old and the newest was about 20 minutes old. The cadence below is for people. Exemptions are unused, so a temporary exception is still a conversation rather than a scorecard record. Program Health is the one scorecard that has exemptions turned off.</p>
+    <table>
+      <thead><tr><th>Cadence</th><th>Look at</th><th>Act on</th></tr></thead>
+      <tbody>
+        <tr><td>Twice a week, 20 minutes</td><td>Services and Cursor automations created since the last review that have no owner</td><td>Own or exclude them. The current queue is 67 services and 658 automations with no user owner.</td></tr>
+        <tr><td>Weekly, with the program-health owner</td><td>The 79 accounts still failing At Least 1 AI DXDC Connection</td><td>The initiative is due 30 Nov 2026 at 89.1%. Tyler Wray owns it. Keep this gate separate from the rest of the points scorecard.</td></tr>
+        <tr><td>Weekly check quality</td><td>Checks failing more than 95% with an empty message</td><td>Fix the query, add the message, or unpublish. Start with competitive takeaway, custom dash, and the six service checks at 88 of 88.</td></tr>
+        <tr><td>Monthly level review</td><td>Level mix for Production Readiness and Draft test</td><td>Report movement between levels. Bronze can grow past 6 once dashboard, open PRs, and wiki return a message or come off the ladder. Silver on Draft test can grow past 35 once the repo-link check explains its failures.</td></tr>
+        <tr><td>Monthly initiatives</td><td>Both initiatives, including whether the test one is still published</td><td>Program health should close the last 79 accounts before 30 Nov. The test initiative should be unpublished rather than carried as a 0% overdue item.</td></tr>
+        <tr><td>Quarterly portfolio</td><td>Scorecards with under 30 entities, duplicate check names, empty levels, and empty types</td><td>Retire or fill DORA. Drop or widen Test for Initiative. Separate Draft test and My Custom Scorecard6 from the customer scorecards. Delete Emma Testing and AWS RDS if they are still empty.</td></tr>
+      </tbody>
+    </table>
+
+    <p class="footer">dx fabric. DX. 14,692 entities, 19 entity types (2 empty), 35 org teams, 8 published scorecards, 54 checks (47 published), 2 initiatives, 18,592 published check results. Generated 20 Nov 2026, 3:54 PM ET. Draft checks excluded. EC2 scorecards were sampled (40 instances, none scored). Relation instances were not available. The user directory was counted and not listed.</p>
+  </main>
+</body>
+</html>
